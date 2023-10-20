@@ -10,4 +10,8 @@ router.post('/auth', Controller.auth);
 
 router.get('/balance', Controller.getBalance);
 
+router.all('*', (req, res)=> {
+    res.status(404).send('error')
+})
+
 export { router };
