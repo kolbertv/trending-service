@@ -1,0 +1,18 @@
+services:
+  redis:
+    image: redis
+    container_name: ${REDIS_HOST}
+  app: 
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: trending-service
+    environment:
+      - PORT
+      - REDIS_PREFIX
+      - REDIS_HOST
+      - BASE_URL
+    depends_on:
+      - redis
+    ports:
+      - ${PORT}:${PORT}
